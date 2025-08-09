@@ -66,8 +66,9 @@ export default function SignUpPage() {
         // Redirect to dashboard or confirmation page
         router.push('/dashboard')
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred during sign up')
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred during sign up'
+      setError(errorMessage)
     } finally {
       setIsLoading(false)
     }

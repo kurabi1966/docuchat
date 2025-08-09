@@ -50,8 +50,9 @@ export default function SignInPage() {
         // Redirect to dashboard
         router.push('/dashboard')
       }
-    } catch (err: any) {
-      setError(err.message || 'Invalid email or password')
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Invalid email or password'
+      setError(errorMessage)
     } finally {
       setIsLoading(false)
     }
